@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f7fa">
+  <meta name="description" content="Alex Morgan is a security engineer making cloud systems, products, and teams more resilient.">
+  <title>Alex Morgan — Security Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #f5f7fa;
+      --ink: #17263a;
+      --muted: #5d6b7c;
+      --line: #dce3eb;
+      --green: #24598e;
+      --green-bright: #d5e8fa;
+      --orange: #c57b4b;
+      --mono: "DM Mono", monospace;
+      --sans: "DM Sans", sans-serif;
+      --page-width: 1240px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 82px; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--orange); outline-offset: 4px; }
+    .shell { width: min(var(--page-width), calc(100% - 96px)); margin-inline: auto; }
+    .mono { font-family: var(--mono); }
+    .topbar {
+      position: sticky;
+      z-index: 10;
+      top: 0;
+      border-bottom: 1px solid rgb(23 38 58 / 10%);
+      background: rgb(245 247 250 / 95%);
+      backdrop-filter: blur(14px);
+    }
+    .nav { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 28px; }
+    .wordmark { display: flex; align-items: center; gap: 11px; font-size: 14px; font-weight: 700; letter-spacing: 0; }
+    .mark { width: 25px; height: 25px; display: grid; place-items: center; background: var(--ink); color: white; font: 500 14px var(--mono); }
+    .nav-links { display: flex; align-items: center; gap: 32px; color: #4d5d71; font-size: 13px; font-weight: 500; }
+    .nav-links a:hover, .text-link:hover { color: var(--green); }
+    .nav-cta { display: inline-flex; align-items: center; gap: 10px; padding: 11px 15px; border: 1px solid var(--ink); font-size: 12px; font-weight: 600; transition: background .2s, color .2s; }
+    .nav-cta:hover { background: var(--ink); color: white; }
+    .arrow { font-size: 16px; line-height: 10px; }
+
+    .hero { padding: 88px 0 76px; }
+    .hero-grid { display: grid; grid-template-columns: 1.02fr .98fr; align-items: center; gap: clamp(48px, 8vw, 110px); }
+    .eyebrow { display: flex; align-items: center; gap: 9px; color: var(--green); font: 500 10px var(--mono); letter-spacing: 0; text-transform: uppercase; }
+    .live-dot { width: 7px; height: 7px; border-radius: 50%; background: #69a749; box-shadow: 0 0 0 3px #69a74922; }
+    h1 { max-width: 620px; margin: 25px 0 22px; font-size: clamp(48px, 6.4vw, 82px); line-height: .99; letter-spacing: 0; font-weight: 600; }
+    h1 span { color: var(--green); }
+    .hero-copy { max-width: 460px; margin: 0; color: #586779; font-size: 16px; line-height: 1.75; }
+    .hero-actions { display: flex; align-items: center; gap: 24px; margin-top: 32px; }
+    .button { display: inline-flex; align-items: center; justify-content: center; gap: 13px; min-height: 48px; padding: 0 18px; background: var(--green); color: white; font-size: 13px; font-weight: 600; transition: background .2s, transform .2s; }
+    .button:hover { background: #104631; transform: translateY(-2px); }
+    .text-link { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; transition: color .2s; }
+    .hero-note { display: flex; align-items: center; gap: 10px; margin-top: 51px; color: var(--muted); font: 10px var(--mono); text-transform: uppercase; }
+    .hero-note::before { content: ""; width: 28px; height: 1px; background: var(--orange); }
+
+    .hero-visual { position: relative; min-width: 0; padding: 0 0 44px 35px; }
+    .photo-frame { position: relative; height: clamp(350px, 41vw, 490px); overflow: hidden; background: #26374b; }
+    .photo-frame::after { position: absolute; inset: 0; content: ""; background: linear-gradient(180deg, transparent 58%, rgb(9 18 14 / 35%)); pointer-events: none; }
+    .photo-frame img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 53% center; filter: saturate(.76); }
+    .photo-label { position: absolute; z-index: 1; right: 18px; bottom: 16px; color: white; font: 9px var(--mono); text-transform: uppercase; }
+    .image-index { position: absolute; top: 17px; left: 17px; z-index: 1; padding: 8px 10px; background: var(--paper); color: var(--ink); font: 10px var(--mono); }
+    .signal-card { position: absolute; z-index: 2; bottom: 0; left: 0; width: min(270px, 74%); padding: 18px 20px 17px; background: var(--ink); color: white; }
+    .signal-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-bottom: 13px; border-bottom: 1px solid rgb(255 255 255 / 20%); color: #d9e7df; font: 9px var(--mono); text-transform: uppercase; }
+    .signal-status { display: flex; align-items: center; gap: 7px; color: var(--green-bright); }
+    .signal-status::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--green-bright); }
+    .signal-title { margin: 15px 0 5px; font-size: 16px; font-weight: 600; }
+    .signal-sub { color: #c7d9ce; font: 10px/1.6 var(--mono); }
+
+    .ticker { overflow: hidden; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .ticker-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 62px; color: #68736c; font: 10px var(--mono); text-transform: uppercase; }
+    .ticker-label { color: var(--green); }
+    .ticker span:not(.ticker-label) { white-space: nowrap; }
+    .section { padding: 104px 0; }
+    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 32px; margin-bottom: 43px; }
+    .section-index { margin-bottom: 15px; color: var(--green); font: 10px var(--mono); text-transform: uppercase; }
+    h2 { margin: 0; font-size: clamp(35px, 4.4vw, 54px); line-height: 1.04; letter-spacing: 0; font-weight: 600; }
+    .section-intro { max-width: 350px; margin: 0 0 3px; color: var(--muted); font-size: 14px; line-height: 1.7; }
+    .project-list { border-top: 1px solid var(--ink); }
+    .project { display: grid; grid-template-columns: 66px 1fr minmax(220px, .72fr) 28px; align-items: center; gap: 24px; min-height: 142px; border-bottom: 1px solid var(--line); transition: padding .2s, background .2s; }
+    .project:hover { padding-inline: 12px; background: #eff2ed; }
+    .project-number { align-self: start; padding-top: 30px; color: #869088; font: 11px var(--mono); }
+    .project h3 { margin: 0 0 8px; font-size: 20px; line-height: 1.2; font-weight: 600; }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+    .project-tags span { color: var(--green); font: 9px var(--mono); text-transform: uppercase; }
+    .project-desc { max-width: 365px; margin: 0; color: var(--muted); font-size: 12px; line-height: 1.7; }
+    .project-arrow { color: var(--green); font-size: 20px; transition: transform .2s; }
+    .project:hover .project-arrow { transform: translate(3px, -3px); }
+
+    .capstone-band { background: #edf1f6; }
+    .capstone-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .capstone-card { min-height: 265px; padding: 23px; border: 1px solid #d7e0ea; background: #f9fafc; }
+    .capstone-kicker { color: var(--green); font: 10px var(--mono); text-transform: uppercase; }
+    .capstone-card h3 { margin: 31px 0 12px; font-size: 20px; line-height: 1.25; }
+    .capstone-card p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.7; }
+    .capstone-stack { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 23px; }
+    .capstone-stack span { padding: 6px 8px; background: #e9eff6; color: #344c68; font: 9px var(--mono); }
+
+    .about-band { background: #e9eef4; }
+    .about-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: clamp(52px, 10vw, 145px); }
+    .about-aside { position: relative; display: flex; flex-direction: column; justify-content: space-between; min-height: 360px; padding: 0 0 21px; }
+    .about-aside::before { position: absolute; top: 0; left: 0; width: 44px; height: 3px; background: var(--orange); content: ""; }
+    .aside-quote { max-width: 340px; margin: 44px 0 0; font-size: clamp(24px, 2.6vw, 34px); line-height: 1.25; font-weight: 500; }
+    .aside-quote em { color: var(--green); font-style: normal; }
+    .aside-signature { color: var(--muted); font: 10px var(--mono); text-transform: uppercase; }
+    .about-copy { padding-top: 0; }
+    .about-copy p { margin: 0 0 20px; color: #526176; font-size: 15px; line-height: 1.8; }
+    .about-copy p strong { color: var(--ink); font-weight: 600; }
+    .skill-label { margin: 35px 0 15px; color: var(--green); font: 10px var(--mono); text-transform: uppercase; }
+    .skills { display: flex; flex-wrap: wrap; gap: 9px; }
+    .skills span { padding: 9px 11px; border: 1px solid #c6d1de; color: #34465b; font: 10px var(--mono); }
+
+    .resume-grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 64px; }
+    .resume-column h3 { margin: 0; font-size: 19px; }
+    .resume-list { margin-top: 20px; border-top: 1px solid var(--line); }
+    .resume-entry { padding: 19px 0; border-bottom: 1px solid var(--line); }
+    .resume-entry h4 { margin: 0 0 5px; font-size: 15px; font-weight: 600; }
+    .resume-meta { margin: 0 0 9px; color: var(--green); font: 10px var(--mono); }
+    .resume-entry p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.65; }
+    .resume-side { display: grid; align-content: start; gap: 32px; }
+    .resume-tools { display: flex; align-items: center; justify-content: space-between; gap: 20px; margin-top: 28px; padding-top: 18px; border-top: 1px solid var(--line); }
+    .resume-tools p { max-width: 480px; margin: 0; color: var(--muted); font-size: 12px; line-height: 1.6; }
+    .print-button { flex: 0 0 auto; min-height: 42px; padding: 0 14px; border: 1px solid var(--ink); background: transparent; color: var(--ink); font: 500 11px var(--mono); cursor: pointer; }
+    .print-button:hover { background: var(--ink); color: white; }
+
+    .contact { padding: 92px 0; background: var(--ink); color: white; }
+    .contact-grid { display: grid; grid-template-columns: .85fr 1.15fr; align-items: start; gap: clamp(40px, 8vw, 100px); }
+    .contact .section-index { color: var(--green-bright); }
+    .contact h2 { max-width: 680px; font-size: clamp(42px, 6vw, 75px); }
+    .contact-copy { max-width: 445px; margin: 20px 0 0; color: #d0d9e4; font-size: 14px; line-height: 1.7; }
+    .contact-form { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding: 25px; background: #f8fafc; color: var(--ink); }
+    .form-field { display: grid; gap: 7px; }
+    .form-field.full { grid-column: 1 / -1; }
+    .form-field label { color: #34465b; font: 10px var(--mono); text-transform: uppercase; }
+    .form-field input, .form-field textarea { width: 100%; border: 1px solid #cbd5e0; border-radius: 0; padding: 11px 12px; background: white; color: var(--ink); font: 13px var(--sans); }
+    .form-field textarea { min-height: 112px; resize: vertical; }
+    .form-field input:focus, .form-field textarea:focus { outline: 2px solid #8eb7df; outline-offset: 1px; }
+    .contact .button { min-height: 46px; padding-inline: 18px; border: 0; background: var(--green); color: white; font-family: var(--sans); cursor: pointer; }
+    .contact .button:hover { background: white; }
+    .contact .button:hover { color: var(--ink); }
+    footer { background: var(--ink); color: #d0d9e4; }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 72px; border-top: 1px solid rgb(255 255 255 / 19%); font: 9px var(--mono); text-transform: uppercase; }
+    .footer-links { display: flex; gap: 22px; }
+    .footer-links a:hover { color: var(--green-bright); }
+    @media print {
+      body > header, body > footer, main > :not(#resume) { display: none !important; }
+      #resume { padding: 0; background: white; }
+      #resume .shell { width: 100%; }
+      #resume .reveal { opacity: 1; transform: none; }
+      #resume .print-button, #resume .resume-tools p { display: none; }
+      #resume .resume-grid { grid-template-columns: 1.2fr .8fr; gap: 32px; }
+    }
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal.is-visible { opacity: 1; transform: translateY(0); }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; } .reveal { opacity: 1; transform: none; } }
+    @media (max-width: 760px) {
+      .shell { width: min(var(--page-width), calc(100% - 40px)); }
+      .nav { min-height: 66px; }
+      .nav-links { gap: 17px; }
+      .nav-links a:nth-child(3) { display: none; }
+      .nav-cta { padding: 9px 11px; font-size: 11px; }
+      .hero { padding: 62px 0 55px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+      h1 { max-width: 560px; font-size: clamp(50px, 12vw, 76px); }
+      .hero-note { margin-top: 34px; }
+      .hero-visual { max-width: 560px; padding-left: 23px; }
+      .photo-frame { height: min(105vw, 440px); }
+      .ticker-inner { justify-content: flex-start; overflow: auto; scrollbar-width: none; }
+      .ticker-inner::-webkit-scrollbar { display: none; }
+      .ticker-label { flex: 0 0 auto; }
+      .section { padding: 75px 0; }
+      .section-head { align-items: start; flex-direction: column; gap: 15px; margin-bottom: 30px; }
+      .project { grid-template-columns: 33px 1fr 21px; gap: 14px; min-height: 134px; }
+      .project-desc { grid-column: 2; grid-row: 2; margin-top: -19px; padding-bottom: 18px; }
+      .project-arrow { grid-column: 3; grid-row: 1; }
+      .project-number { padding-top: 27px; }
+      .project h3 { font-size: 17px; }
+      .capstone-grid { grid-template-columns: 1fr; gap: 10px; }
+      .capstone-card { min-height: 0; padding: 19px; }
+      .capstone-card h3 { margin-top: 20px; }
+      .resume-grid { grid-template-columns: 1fr; gap: 36px; }
+      .resume-tools { align-items: flex-start; flex-direction: column; }
+      .about-grid { grid-template-columns: 1fr; gap: 38px; }
+      .about-aside { min-height: 235px; }
+      .aside-quote { max-width: 500px; margin-top: 32px; }
+      .contact { padding: 77px 0 65px; }
+      .contact-grid { grid-template-columns: 1fr; align-items: start; gap: 28px; }
+      .contact-form { padding: 18px; }
+      .footer-inner { min-height: 74px; }
+    }
+    @media (max-width: 420px) {
+      .shell { width: calc(100% - 32px); }
+      .wordmark { font-size: 12px; }
+      .nav-links { gap: 12px; font-size: 12px; }
+      .nav-cta { gap: 6px; padding: 9px; font-size: 10px; }
+      .hero-actions { gap: 16px; }
+      .button { padding-inline: 13px; font-size: 12px; }
+      .text-link { font-size: 12px; }
+      .footer-inner { align-items: flex-start; flex-direction: column; justify-content: center; gap: 10px; padding: 14px 0; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <nav class="nav shell" aria-label="Main navigation">
+      <a class="wordmark" href="#home" aria-label="Alex Morgan, home"><span class="mark">A/</span><span>ALEX MORGAN</span></a>
+      <div class="nav-links">
+        <a href="#capstones">Capstones</a>
+        <a href="#resume">Resume</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <a class="nav-cta" href="#contact">Let's talk <span class="arrow" aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero shell" id="home">
+      <div class="hero-grid">
+        <div class="hero-content reveal">
+          <div class="eyebrow"><span class="live-dot" aria-hidden="true"></span> Independent security engineer</div>
+          <h1>Make the hard-to-see <span>hard to exploit.</span></h1>
+          <p class="hero-copy">I help teams find the gaps between how systems are designed and how they behave under pressure, then build defenses that hold up in the real world.</p>
+          <div class="hero-actions">
+            <a class="button" href="#work">Explore selected work <span class="arrow" aria-hidden="true">↓</span></a>
+            <a class="text-link" href="#about">How I work <span class="arrow" aria-hidden="true">↗</span></a>
+          </div>
+          <div class="hero-note">Security that enables, not obstructs</div>
+        </div>
+        <div class="hero-visual reveal">
+          <div class="photo-frame">
+            <span class="image-index">FIELD NOTE / 001</span>
+            <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&amp;fit=crop&amp;w=1200&amp;q=85" alt="Lit server racks in a modern data center" fetchpriority="high">
+            <span class="photo-label">Infrastructure / always in motion</span>
+          </div>
+          <div class="signal-card">
+            <div class="signal-top"><span>Security posture</span><span class="signal-status">In progress</span></div>
+            <div class="signal-title">Resilience is a practice.</div>
+            <div class="signal-sub">Observe clearly. Reduce risk.<br>Make the next move count.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="ticker" aria-label="Areas of practice">
+      <div class="ticker-inner shell"><span class="ticker-label">Areas of practice</span><span>Cloud security</span><span>·</span><span>Application security</span><span>·</span><span>Threat modeling</span><span>·</span><span>Incident readiness</span></div>
+    </div>
+
+    <section class="section shell" id="work">
+      <div class="section-head reveal">
+        <div><div class="section-index">01 / Selected work</div><h2>Security, in practice.</h2></div>
+        <p class="section-intro">A few ways I turn uncertainty into a plan teams can actually use.</p>
+      </div>
+      <div class="project-list">
+        <article class="project reveal">
+          <span class="project-number">01</span>
+          <div><h3>Cloud identity review</h3><div class="project-tags"><span>Cloud</span><span>·</span><span>Identity</span></div></div>
+          <p class="project-desc">Mapped privilege paths across cloud accounts and prioritized fixes around real attack routes, not theoretical checklists.</p>
+          <span class="project-arrow" aria-hidden="true">↗</span>
+        </article>
+        <article class="project reveal">
+          <span class="project-number">02</span>
+          <div><h3>Product threat model</h3><div class="project-tags"><span>AppSec</span><span>·</span><span>Design</span></div></div>
+          <p class="project-desc">Worked alongside product engineers to surface trust boundaries early and make secure choices easier to ship.</p>
+          <span class="project-arrow" aria-hidden="true">↗</span>
+        </article>
+        <article class="project reveal">
+          <span class="project-number">03</span>
+          <div><h3>Incident readiness</h3><div class="project-tags"><span>Detection</span><span>·</span><span>Response</span></div></div>
+          <p class="project-desc">Pressure-tested response plans with realistic scenarios, clarifying ownership, communication, and first-hour decisions.</p>
+          <span class="project-arrow" aria-hidden="true">↗</span>
+        </article>
+      </div>
+    </section>
+
+    <section class="capstone-band" id="capstones">
+      <div class="section shell">
+        <div class="section-head reveal">
+          <div><div class="section-index">02 / Capstone projects</div><h2>Research made tangible.</h2></div>
+          <p class="section-intro">Applied security concepts built around practical problems and measurable outcomes.</p>
+        </div>
+        <div class="capstone-grid">
+          <article class="capstone-card reveal">
+            <div class="capstone-kicker">Capstone 01 / Cloud security</div>
+            <h3>Cloud IAM attack-path analyzer</h3>
+            <p>Model permissions as attack paths, identify privilege escalation risks, and recommend least-privilege remediations.</p>
+            <div class="capstone-stack"><span>AWS IAM</span><span>Python</span><span>Graph analysis</span></div>
+          </article>
+          <article class="capstone-card reveal">
+            <div class="capstone-kicker">Capstone 02 / Detection</div>
+            <h3>Detection engineering lab</h3>
+            <p>Build and validate detections for credential access and suspicious sign-ins with replayable test events.</p>
+            <div class="capstone-stack"><span>Sigma</span><span>MITRE ATT&amp;CK</span><span>SIEM</span></div>
+          </article>
+          <article class="capstone-card reveal">
+            <div class="capstone-kicker">Capstone 03 / DevSecOps</div>
+            <h3>Secure CI/CD pipeline</h3>
+            <p>Integrate secret scanning, dependency checks, and artifact integrity controls into a developer-friendly workflow.</p>
+            <div class="capstone-stack"><span>GitHub Actions</span><span>Semgrep</span><span>SBOM</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-band" id="about">
+      <div class="section shell about-grid">
+        <div class="about-aside reveal">
+          <blockquote class="aside-quote">Good security starts with <em>understanding the system.</em></blockquote>
+          <div class="aside-signature">Clear-eyed / Collaborative / Curious</div>
+        </div>
+        <div class="about-copy reveal">
+          <div class="section-index">03 / Approach</div>
+          <h2>Built for the way teams work.</h2>
+          <p style="margin-top:22px">I'm a security practitioner focused on <strong>cloud, product, and detection engineering.</strong> My work starts by listening: to the people building the system, the people using it, and the evidence it leaves behind.</p>
+          <p>I turn that context into practical improvements: a clearer threat model, a smaller blast radius, a useful alert, or an incident plan that works when the pressure is real.</p>
+          <div class="skill-label">Tools &amp; focus areas</div>
+          <div class="skills"><span>AWS / Azure</span><span>IAM</span><span>OWASP</span><span>Python</span><span>SIEM / Detection</span><span>Incident response</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section shell" id="resume">
+      <div class="section-head reveal">
+        <div><div class="section-index">04 / Resume</div><h2>Experience &amp; credentials.</h2></div>
+        <p class="section-intro">A concise overview of relevant experience, education, certifications, and technical strengths.</p>
+      </div>
+      <div class="resume-grid reveal">
+        <div class="resume-column">
+          <h3>Professional experience</h3>
+          <div class="resume-list">
+            <article class="resume-entry">
+              <h4>[Security Engineer / Role title]</h4>
+              <div class="resume-meta">[Organization] · [Location] · [Dates]</div>
+              <p>[Summarize your scope, security responsibilities, and one measurable outcome.]</p>
+            </article>
+            <article class="resume-entry">
+              <h4>[Previous role / Internship]</h4>
+              <div class="resume-meta">[Organization] · [Location] · [Dates]</div>
+              <p>[Highlight relevant projects, tools, and the impact of your work.]</p>
+            </article>
+          </div>
+        </div>
+        <div class="resume-side">
+          <div class="resume-column">
+            <h3>Education</h3>
+            <div class="resume-list">
+              <article class="resume-entry">
+                <h4>[Degree or program]</h4>
+                <div class="resume-meta">[Institution] · [Graduation year]</div>
+                <p>[Relevant coursework, honors, or academic focus]</p>
+              </article>
+            </div>
+          </div>
+          <div class="resume-column">
+            <h3>Certifications</h3>
+            <div class="resume-list">
+              <article class="resume-entry">
+                <h4>[Certification name]</h4>
+                <div class="resume-meta">[Issuing organization] · [Year]</div>
+              </article>
+              <article class="resume-entry">
+                <h4>[Certification name]</h4>
+                <div class="resume-meta">[Issuing organization] · [Year]</div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="resume-tools reveal">
+        <p>Replace bracketed fields with your details. Print this section or choose “Save as PDF” to create a resume copy.</p>
+        <button class="print-button" id="print-resume" type="button">Print / Save as PDF</button>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="shell contact-grid reveal">
+        <div>
+          <div class="section-index">05 / Get in touch</div>
+          <h2>Let's talk security.</h2>
+          <p class="contact-copy">Have a role, project, or security challenge in mind? Send a note and I’ll get back to you.</p>
+        </div>
+        <form class="contact-form" id="contact-form">
+          <div class="form-field"><label for="contact-name">Name</label><input id="contact-name" name="name" autocomplete="name" required></div>
+          <div class="form-field"><label for="contact-email">Email</label><input id="contact-email" name="email" type="email" autocomplete="email" required></div>
+          <div class="form-field full"><label for="contact-subject">Subject</label><input id="contact-subject" name="subject" required></div>
+          <div class="form-field full"><label for="contact-message">Message</label><textarea id="contact-message" name="message" required></textarea></div>
+          <div class="form-field full"><button class="button" type="submit">Draft email <span class="arrow" aria-hidden="true">↗</span></button></div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell footer-inner">
+      <span>© <span id="year">2026</span> Alex Morgan / Security Engineer</span>
+      <div class="footer-links"><a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn ↗</a><a href="https://github.com/" target="_blank" rel="noreferrer">GitHub ↗</a><a href="#home">Back to top ↑</a></div>
+    </div>
+  </footer>
+  <script>
+    const year = document.querySelector("#year");
+    year.textContent = new Date().getFullYear();
+
+    document.querySelector("#print-resume").addEventListener("click", () => window.print());
+
+    document.querySelector("#contact-form").addEventListener("submit", (event) => {
+      event.preventDefault();
+      const formData = new FormData(event.currentTarget);
+      const subject = encodeURIComponent(formData.get("subject"));
+      const body = encodeURIComponent(`From: ${formData.get("name")} (${formData.get("email")})\n\n${formData.get("message")}`);
+      window.location.href = `mailto:hello@example.com?subject=${subject}&body=${body}`;
+    });
+
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll(".reveal").forEach((element) => revealObserver.observe(element));
+  </script>
+</body>
+</html>
