@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f5f7fa">
-  <meta name="description" content="Alex Morgan is a security engineer making cloud systems, products, and teams more resilient.">
-  <title>Alex Morgan — Security Engineer</title>
+  <meta name="description" content="Luke Schneider is a security engineer making cloud systems, products, and teams more resilient.">
+  <title>Luke Schneider — Security Engineer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -146,9 +146,9 @@
     .form-field { display: grid; gap: 7px; }
     .form-field.full { grid-column: 1 / -1; }
     .form-field label { color: #34465b; font: 10px var(--mono); text-transform: uppercase; }
-    .form-field input, .form-field textarea { width: 100%; border: 1px solid #cbd5e0; border-radius: 0; padding: 11px 12px; background: white; color: var(--ink); font: 13px var(--sans); }
+    .form-field input, .form-field textarea, .form-field select { width: 100%; border: 1px solid #cbd5e0; border-radius: 0; padding: 11px 12px; background: white; color: var(--ink); font: 13px var(--sans); }
     .form-field textarea { min-height: 112px; resize: vertical; }
-    .form-field input:focus, .form-field textarea:focus { outline: 2px solid #8eb7df; outline-offset: 1px; }
+    .form-field input:focus, .form-field textarea:focus, .form-field select:focus { outline: 2px solid #8eb7df; outline-offset: 1px; }
     .contact .button { min-height: 46px; padding-inline: 18px; border: 0; background: var(--green); color: white; font-family: var(--sans); cursor: pointer; }
     .contact .button:hover { background: white; }
     .contact .button:hover { color: var(--ink); }
@@ -217,7 +217,7 @@
 <body>
   <header class="topbar">
     <nav class="nav shell" aria-label="Main navigation">
-      <a class="wordmark" href="#home" aria-label="Alex Morgan, home"><span class="mark">A/</span><span>ALEX MORGAN</span></a>
+      <a class="wordmark" href="#home" aria-label="Luke Schneider, home"><span class="mark">L/</span><span>LUKE SCHNEIDER</span></a>
       <div class="nav-links">
         <a href="#capstones">Capstones</a>
         <a href="#resume">Resume</a>
@@ -390,14 +390,16 @@
         <div>
           <div class="section-index">05 / Get in touch</div>
           <h2>Let's talk security.</h2>
-          <p class="contact-copy">Have a role, project, or security challenge in mind? Send a note and I’ll get back to you.</p>
+          <p class="contact-copy">Have a role, project, or security challenge in mind? Share your details and how you’d like me to follow up.</p>
         </div>
         <form class="contact-form" id="contact-form">
           <div class="form-field"><label for="contact-name">Name</label><input id="contact-name" name="name" autocomplete="name" required></div>
           <div class="form-field"><label for="contact-email">Email</label><input id="contact-email" name="email" type="email" autocomplete="email" required></div>
+          <div class="form-field"><label for="contact-phone">Phone (optional)</label><input id="contact-phone" name="phone" type="tel" autocomplete="tel"></div>
+          <div class="form-field"><label for="contact-preference">Preferred follow-up</label><select id="contact-preference" name="preference"><option>Email</option><option>Phone</option></select></div>
           <div class="form-field full"><label for="contact-subject">Subject</label><input id="contact-subject" name="subject" required></div>
           <div class="form-field full"><label for="contact-message">Message</label><textarea id="contact-message" name="message" required></textarea></div>
-          <div class="form-field full"><button class="button" type="submit">Draft email <span class="arrow" aria-hidden="true">↗</span></button></div>
+          <div class="form-field full"><button class="button" type="submit">Open email to send <span class="arrow" aria-hidden="true">↗</span></button></div>
         </form>
       </div>
     </section>
@@ -405,7 +407,7 @@
 
   <footer>
     <div class="shell footer-inner">
-      <span>© <span id="year">2026</span> Alex Morgan / Security Engineer</span>
+      <span>© <span id="year">2026</span> Luke Schneider / Security Engineer</span>
       <div class="footer-links"><a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn ↗</a><a href="https://github.com/" target="_blank" rel="noreferrer">GitHub ↗</a><a href="#home">Back to top ↑</a></div>
     </div>
   </footer>
@@ -419,7 +421,7 @@
       event.preventDefault();
       const formData = new FormData(event.currentTarget);
       const subject = encodeURIComponent(formData.get("subject"));
-      const body = encodeURIComponent(`From: ${formData.get("name")} (${formData.get("email")})\n\n${formData.get("message")}`);
+      const body = encodeURIComponent(`Name: ${formData.get("name")}\nEmail: ${formData.get("email")}\nPhone: ${formData.get("phone") || "Not provided"}\nPreferred follow-up: ${formData.get("preference")}\n\n${formData.get("message")}`);
       window.location.href = `mailto:hello@example.com?subject=${subject}&body=${body}`;
     });
 
